@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import HornedBeasts from './HornedBeasts'
 
  class Main extends Component {
     render() {
@@ -28,10 +29,10 @@ import React, { Component } from 'react'
         return (
 
             <>
-                    <h1>I' the main component</h1>
+                 
                     {
                          animals.map(element=>{
-                            return <HornedBeast  title={element.title} img={element.image_url} description={element.description}/>
+                            return <HornedBeasts  title={element.title} img={element.image_url} description={element.description}/>
                         })
                     }
                     
