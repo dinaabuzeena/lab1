@@ -11,8 +11,9 @@ export class App extends Component {
     super(props);
     this.state = {
       showModal: false,
-      name: "",
-      title: ""
+      title: "",
+      img:"",
+      description:""
     }
   }
   handleClose = () => {
@@ -20,11 +21,13 @@ export class App extends Component {
       showModal: false
     })
   }
-  handleOpen = (name, title) => {
+  handleOpen = (title,img,description) => {
     this.setState({
       showModal: true,
-      name: name,
-      title: title
+      title: title,
+      img:img,
+      description:description
+
 
     })
   }
@@ -45,8 +48,9 @@ export class App extends Component {
  
         <SelectedBeast handleClose={this.handleClose}
           showModal={this.state.showModal}
-          name={this.state.name}
           title={this.state.title}
+          img={this.state.img}
+          description={this.state. description}
         />
         <Footer />
       </div>
