@@ -23,6 +23,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
         let title=this.props.title;
         let img=this.props.img;
         let description=this.props.description;
+        let horns=this.props.horns;
+
         this.props.handleOpen(title,img,description);
     }
 
@@ -37,6 +39,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
                     <Card.Body>
                         <Card.Title>{this.props.title}</Card.Title>
                         <Card.Text>
+                        number of horns : {this.state.horns}   
                         number of like : {this.state.vote}
                             
                         </Card.Text>
