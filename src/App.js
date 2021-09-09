@@ -5,31 +5,51 @@ import Footer from "./components/Footer";
 import Main from "./components/Main";
 import SelectedBeast from './components/SelectedBeast';
 import animals from './data.json'
+import Form from './components/Form';
 
 export class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showModal: false,
-      title: "",
-      img:"",
-      description:""
+      title:"",
+      image_url:"",
+      description:"",
+      horns: "",
+      data:animals,
+      filterdata:animals,
+      NumberOfHorns:""
     }
   }
+
+
+  handleSelect = (e) => {
+    let NumberOfHorns = parseInt(e.target.value);
+    this.setState({
+      NumberOfHorns: NumberOfHorns,
+           filterdata: this.state.data.filter((element) => {
+        if (NumberOfHorns == element.horns) {
+          return element
+        }
+      }),
+    });
+  };
+
+
   handleClose = () => {
     this.setState({
       showModal: false
     })
   }
-  handleOpen = (title,img,description) => {
+  handleOpen = (title, image_url, description, horns) => {
     this.setState({
       showModal: true,
       title: title,
-      img:img,
-      description:description
+      image_url: image_url,
+      description: description,
+      horns: horns
 
-
-    })
+    });
   }
   render() {
     return (
@@ -38,24 +58,37 @@ export class App extends Component {
 
         <Header />{
 
-          animals.map(element => {
-            return <Main handleOpen={this.handleOpen}
-              title={element.title}
-              img={element.image_url}
-              description={element.description} />
-          })
+          // animals.map(element => {
+          //   return <Main handleOpen={this.handleOpen}
+          //     title={element.title}
+          //     img={element.image_url}
+          //     description={element.description} />
+
+          // })
         }
- 
+        <Form handleSelect={this.handleSelect}
+          NumberOfHorns={this.state.NumberOfHorns}
+        />
+
+        <Main
+          handleOpen={this.handleOpen}
+          filterdata={this.state.filterdata}
+        />
+
         <SelectedBeast handleClose={this.handleClose}
           showModal={this.state.showModal}
           title={this.state.title}
-          img={this.state.img}
-          description={this.state. description}
+          image_url={this.state.image_url}
+          description={this.state.description}
+          horns={this.state.horns}
         />
+        
+
         <Footer />
       </div>
     )
   }
 }
+
 
 export default App
