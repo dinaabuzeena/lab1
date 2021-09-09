@@ -14,7 +14,7 @@ export class SelectedBeast extends Component {
                     <img src={this.props.image_url} alt={this.props.keyword} title={this.props.title}></img>
                     <p>{this.props.description}</p>
                     <strong> number of horns: {this.props.horns} horns</strong>
-                    </Modal.Body>
+                </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={this.props.handleClose}>
                         Close

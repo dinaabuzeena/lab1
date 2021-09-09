@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
 
- class Form extends Component {
+
+class Form extends Component {
     render() {
         return (
             <div>
-               <form onSubmit={this.props.handleSubmit}>
-                    
-                    <select onChange={(e)=>{this.props.handleSelect(e)}}>
-                        <option value="">Select num of horns </option>
-                        <option value="1">Software engineer</option>
-                        <option value="2">Forntend engineer</option>
-                        <option value="3">Backend engineer</option>
+                <form >
+
+                    <select onChange={(e) => {this.props.handleSelect(e) }}>
+                        <option value="0">Select num of horns </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="100">100</option>
                     </select>
-                    <input type="submit" />
-                </form> 
+                    
+                </form>
             </div>
         )
     }
