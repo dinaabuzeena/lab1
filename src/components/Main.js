@@ -1,39 +1,57 @@
-import React, { Component } from 'react'
-import HornedBeasts from './HornedBeasts'
+import React, { Component } from 'react';
+import Data from './data.json';
+import SelectedBeast from './SelectedBeast';
+import BsForm from './BsForm';
 
- class Main extends Component {
+
+class Main extends Component {
+
+    constructor(props){
+        super(props);
+        this.state={
+            speciality:''
+        }
+    }
+
+    handleSelect = (e) => {
+        let speciality = e.target.value;
+        this.setState({
+          speciality: speciality
+        })
+    }
     render() {
-        let animals=[{
-            image_url: "http://3.bp.blogspot.com/_DBYF1AdFaHw/TE-f0cDQ24I/AAAAAAAACZg/l-FdTZ6M7z8/s1600/Unicorn_and_Narwhal_by_dinglehopper.jpg",
-            title: "UniWhal",
-            description: "A unicorn and a narwhal nuzzling their horns",
-            keyword: "narwhal",
-            horns: 1
-          },
-        
-          {
-            image_url: "https://images.unsplash.com/photo-1512636618879-bbe79107e9e3?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd9460ee6d1ddbb6b1ca7be86dfc4590&auto=format&fit=crop&w=1825&q=80",
-            title: "Rhino Family",
-            description: "Mother (or father) rhino with two babies",
-            keyword: "rhino",
-           horns: 2
-          },
-          
-          {
-            image_url: "https://www.dhresource.com/0x0s/f2-albu-g5-M00-1A-11-rBVaI1hsIIiALxKzAAIHjSU3VkE490.jpg/wholesale-halloween-costume-prop-unicorn.jpg",
-            title: "Unicorn Head",
-            description: "Someone wearing a creepy unicorn head mask",
-            keyword: "unicorn", 
-            horns: 1
-        }]
+
         return (
-            <div>
-              {
-                 animals.map(element=>{
-                    return <HornedBeasts titel={element.titel} image_url={element.image_url} description={element.description} />
-                })
-            }
-            </div>
+            <>
+                <h1>Horned Beasts </h1>
+                <p> 
+                    displays images and information of horned animals.
+                    This application will allow you to filter the images by
+                    number of horns and chose your favorite image.</p>
+
+                    <BsForm
+                     handleSelect={this.handleSelect} />
+                    <br/>
+                <div className="row">
+                    {
+
+                    Data.map(element => {
+                       return  element.horns===Number(this.state.speciality)&&<SelectedBeast
+                            horns={element.horns}
+                            title={element.title}
+                            descreption={element.description}
+                            keyword={element.keyword}
+                            img={element.image_url} />
+                             }) 
+                    }
+                </div>{
+                    
+
+                }
+                            
+
+
+            </>
         )
     }
 }
